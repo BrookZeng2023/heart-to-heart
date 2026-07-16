@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#191417" />
+    <meta
+      name="description"
+      content="心里有你——适合情侣与多人夜谈的温柔真心话游戏。"
+    />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>心里有你 · 真心话夜谈</title>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <button class="brand" type="button" data-go-home aria-label="返回首页">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 42 42">
+              <path d="M21 35.5S7.5 28 7.5 17.4c0-5.6 6.7-8.6 10.5-4.3l3 3.4 3-3.4c3.8-4.3 10.5-1.3 10.5 4.3C34.5 28 21 35.5 21 35.5Z" />
+            </svg>
+          </span>
+          <span>心里有你</span>
+        </button>
+
+        <div class="topbar-actions">
+          <button class="icon-button" id="sound-toggle" type="button" aria-label="关闭声音">
+            <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 5 6.8 8.5H3v7h3.8L11 19V5Zm4.2 3.1a5.5 5.5 0 0 1 0 7.8M18 5.5a9 9 0 0 1 0 13" />
+            </svg>
+            <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 5 6.8 8.5H3v7h3.8L11 19V5Zm4 5 5 5m0-5-5 5" />
+            </svg>
+          </button>
+          <button class="icon-button" id="info-toggle" type="button" aria-label="游戏说明">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M12 10.8v5.4M12 7.6h.01"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="screen active" id="scene-screen" aria-labelledby="scene-title">
+        <div class="scene-hero">
+          <p class="eyebrow">CHOOSE YOUR NIGHT</p>
+          <h1 id="scene-title">今晚，<br /><em>想和谁聊聊？</em></h1>
+          <p class="lead">两个人靠近一点，或一群人认真认识彼此。选一个适合今晚的场景。</p>
+        </div>
+
+        <div class="scene-grid">
+          <button class="scene-card scene-couple" id="open-couple-mode" type="button">
+            <span class="scene-card-topline"><i>01</i><b>2 人</b></span>
+            <span class="scene-visual couple-visual" aria-hidden="true">
+              <i></i><em>♥</em><i></i>
+            </span>
+            <strong>两个人 · 更靠近</strong>
+            <span>保留原来的情侣真心话，聊喜欢、期待和没有说出口的心事。</span>
+            <small>情侣模式 <b>→</b></small>
+          </button>
+
+          <button class="scene-card scene-group" id="open-group-mode" type="button">
+            <span class="scene-card-topline"><i>02</i><b>3–12 人</b></span>
+            <span class="scene-visual group-visual" aria-hidden="true">
+              <i></i><i></i><i></i><i></i>
+            </span>
+            <strong>一群人 · 认真夜谈</strong>
+            <span>随机点名，聊情感、选择与人生故事，适合朋友聚会和深夜围谈。</span>
+            <small>多人模式 <b>→</b></small>
+          </button>
+        </div>
+
+        <div class="welcome-footer scene-footer">
+          <span></span>
+          <p>所有问题都可以跳过，舒服比回答更重要</p>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="screen" id="welcome-screen" aria-labelledby="welcome-title">
+        <div class="welcome-copy">
+          <button class="text-button inline-back-button" type="button" data-go-scene>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+            选择其他场景
+          </button>
+          <p class="eyebrow">TWO PEOPLE · ONE HONEST MOMENT</p>
+          <h1 id="welcome-title">今晚，<br /><em>更靠近一点。</em></h1>
+          <p class="lead">没有输赢，也没有标准答案。只有两个人，轮流说一点平时没说出口的话。</p>
+        </div>
+
+        <div class="start-card glass-card">
+          <div class="names-row">
+            <label class="field">
+              <span>第一位</span>
+              <input id="player-one" type="text" maxlength="10" placeholder="比如：小满" autocomplete="off" />
+            </label>
+            <span class="heart-link" aria-hidden="true">♥</span>
+            <label class="field">
+              <span>第二位</span>
+              <input id="player-two" type="text" maxlength="10" placeholder="比如：阿川" autocomplete="off" />
+            </label>
+          </div>
+
+          <button class="primary-button" id="enter-setup" type="button">
+            <span>开始今晚的对话</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h13m-5-5 5 5-5 5" />
+            </svg>
+          </button>
+
+          <p class="privacy-note">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 10V8a5 5 0 0 1 10 0v2M5 10h14v10H5z" />
+            </svg>
+            所有内容只保存在这台设备上
+          </p>
+        </div>
+
+        <div class="welcome-footer">
+          <span></span>
+          <p>真诚是亲密最温柔的冒险</p>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="screen" id="setup-screen" aria-labelledby="setup-title">
+        <div class="section-heading">
+          <button class="text-button back-button" type="button" data-go-couple>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+            返回
+          </button>
+          <p class="eyebrow">PICK YOUR MOOD</p>
+          <h2 id="setup-title">今晚想聊多深？</h2>
+          <p>选一个让彼此都舒服的氛围，游戏中可以随时跳过。</p>
+        </div>
+
+        <div class="mode-grid" role="radiogroup" aria-label="选择游戏模式">
+          <button class="mode-card selected" type="button" role="radio" aria-checked="true" data-mode="sweet">
+            <span class="mode-number">01</span>
+            <span class="mode-icon mode-sweet" aria-hidden="true">☀</span>
+            <strong>轻甜热身</strong>
+            <span>笑着聊起小事，重新发现喜欢</span>
+            <i>轻松</i>
+          </button>
+          <button class="mode-card" type="button" role="radio" aria-checked="false" data-mode="deep">
+            <span class="mode-number">02</span>
+            <span class="mode-icon mode-deep" aria-hidden="true">◐</span>
+            <strong>认真走心</strong>
+            <span>聊期待、脆弱与彼此的内心世界</span>
+            <i>深入</i>
+          </button>
+          <button class="mode-card" type="button" role="radio" aria-checked="false" data-mode="brave">
+            <span class="mode-number">03</span>
+            <span class="mode-icon mode-brave" aria-hidden="true">✦</span>
+            <strong>勇敢坦白</strong>
+            <span>把难开口的话，温柔地说出来</span>
+            <i>挑战</i>
+          </button>
+          <button class="mode-card custom-mode" type="button" role="radio" aria-checked="false" data-mode="mixed">
+            <span class="mode-number">∞</span>
+            <span class="mode-icon mode-mixed" aria-hidden="true">⌁</span>
+            <strong>随心混合</strong>
+            <span>三种深度随机出现，保留一点未知</span>
+            <i>惊喜</i>
+          </button>
+        </div>
+
+        <div class="setup-options glass-card">
+          <label class="range-field" for="round-count">
+            <span>
+              <strong>今晚聊几轮</strong>
+              <small>每人轮流回答，结束后可继续</small>
+            </span>
+            <span class="round-value"><b id="round-count-label">12</b> 题</span>
+          </label>
+          <input id="round-count" type="range" min="6" max="24" step="2" value="12" />
+
+          <div class="option-divider"></div>
+
+          <button class="custom-question-link" id="open-custom" type="button">
+            <span class="plus-icon">＋</span>
+            <span>
+              <strong>写下你想问的问题</strong>
+              <small id="custom-count-label">添加只属于你们的真心话</small>
+            </span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg>
+          </button>
+        </div>
+
+        <button class="primary-button setup-start" id="start-game" type="button">
+          <span>准备好了，开始吧</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
+        </button>
+      </section>
+
+      <section class="screen" id="group-setup-screen" aria-labelledby="group-setup-title">
+        <div class="section-heading">
+          <button class="text-button back-button" type="button" data-go-scene>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6" /></svg>
+            返回
+          </button>
+          <p class="eyebrow">A TABLE FULL OF STORIES</p>
+          <h2 id="group-setup-title">今晚，围坐聊点真的。</h2>
+          <p>添加在场的人，系统会公平随机点名。3–12 人都可以。</p>
+        </div>
+
+        <div class="group-setup-layout">
+          <div class="group-builder glass-card">
+            <div class="group-block-heading">
+              <span>
+                <strong>今晚有谁</strong>
+                <small>可一次输入多个名字，用逗号分隔</small>
+              </span>
+              <b><span id="group-player-count">0</span>/12</b>
+            </div>
+
+            <div class="group-input-row">
+              <input id="group-player-input" type="text" maxlength="120" placeholder="比如：小满，阿川，知夏" autocomplete="off" />
+              <button id="add-group-player" type="button" aria-label="添加参与者">＋</button>
+            </div>
+            <div class="group-player-list" id="group-player-list" aria-live="polite">
+              <p>还没有人入座</p>
+            </div>
+            <p class="group-form-message" id="group-form-message" role="status"></p>
+          </div>
+
+          <div class="group-topics glass-card">
+            <div class="group-block-heading">
+              <span>
+                <strong>想聊些什么</strong>
+                <small>可以多选，默认全部加入题库</small>
+              </span>
+            </div>
+            <div class="topic-grid" aria-label="选择多人问题类型">
+              <button class="topic-chip selected" type="button" aria-pressed="true" data-group-topic="emotion"><i>♥</i>情感关系</button>
+              <button class="topic-chip selected" type="button" aria-pressed="true" data-group-topic="choice"><i>⌁</i>人生选择</button>
+              <button class="topic-chip selected" type="button" aria-pressed="true" data-group-topic="growth"><i>↗</i>自我成长</button>
+              <button class="topic-chip selected" type="button" aria-pressed="true" data-group-topic="memory"><i>◌</i>回忆片段</button>
+              <button class="topic-chip selected" type="button" aria-pressed="true" data-group-topic="future"><i>✦</i>未来想象</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="setup-options group-rounds glass-card">
+          <label class="range-field" for="group-round-count">
+            <span>
+              <strong>今晚聊几题</strong>
+              <small>回答后随机交给下一位，不连续点到同一个人</small>
+            </span>
+            <span class="round-value"><b id="group-round-count-label">15</b> 题</span>
+          </label>
+          <input id="group-round-count" type="range" min="8" max="30" step="1" value="15" />
+        </div>
+
+        <button class="primary-button setup-start" id="start-group-game" type="button">
+          <span>人齐了，开始夜谈</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
+        </button>
+      </section>
+
+      <section class="screen" id="game-screen" aria-labelledby="question-text">
+        <div class="game-status">
+          <div>
+            <p id="turn-kicker">轮到你啦</p>
+            <h2><span id="active-player">小满</span><i></i></h2>
+          </div>
+          <div class="progress-copy">
+            <span id="progress-number">01</span>
+            <small>/ <span id="progress-total">12</span></small>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-label="游戏进度">
+          <span id="progress-bar"></span>
+        </div>
+
+        <div class="question-stage">
+          <article class="question-card" id="question-card">
+            <div class="card-topline">
+              <span class="question-category" id="question-category">轻甜热身</span>
+              <span class="question-level" id="question-level">轻松</span>
+            </div>
+
+            <div class="quote-mark" aria-hidden="true">“</div>
+            <p class="question-text" id="question-text">第一次意识到“我好像真的喜欢上你了”，是在哪个瞬间？</p>
+            <div class="card-heart" aria-hidden="true">
+              <span></span><i>♥</i><span></span>
+            </div>
+          </article>
+
+          <p class="answer-prompt">慢慢想，不着急。准备好后，说给对方听。</p>
+        </div>
+
+        <div class="game-actions">
+          <button class="secondary-button" id="skip-question" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11a5 5 0 0 1 0 10H9m3-3-3 3 3 3M20 4v4" /></svg>
+            换一个问题
+          </button>
+          <button class="primary-button" id="complete-answer" type="button">
+            <span>我说完啦</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6" /></svg>
+          </button>
+        </div>
+
+        <button class="end-game-link" id="end-early" type="button">先聊到这里</button>
+      </section>
+
+      <section class="screen" id="result-screen" aria-labelledby="result-title">
+        <div class="result-orbit" aria-hidden="true">
+          <span class="orbit-one"></span>
+          <span class="orbit-two"></span>
+          <i>♥</i>
+        </div>
+        <p class="eyebrow">A LITTLE CLOSER</p>
+        <h2 id="result-title">谢谢你们的真诚。</h2>
+        <p class="result-copy">
+          今晚，你们一起认真回答了 <strong id="answered-count">12</strong> 个问题。<br />
+          愿每一次说出口，都让彼此更靠近一点。
+        </p>
+
+        <div class="result-names glass-card">
+          <span id="result-player-one">小满</span>
+          <i>♥</i>
+          <span id="result-player-two">阿川</span>
+        </div>
+
+        <div class="result-actions">
+          <button class="primary-button" id="continue-game" type="button">
+            <span>再聊几题</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
+          </button>
+          <button class="secondary-button" type="button" data-go-home>回到首页</button>
+        </div>
+      </section>
+
+      <section class="screen" id="group-game-screen" aria-labelledby="group-question-text">
+        <div class="game-status">
+          <div>
+            <p id="group-turn-kicker">这一题，交给</p>
+            <h2><span id="group-active-player">小满</span><i></i></h2>
+          </div>
+          <div class="progress-copy">
+            <span id="group-progress-number">01</span>
+            <small>/ <span id="group-progress-total">15</span></small>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-label="多人游戏进度">
+          <span id="group-progress-bar"></span>
+        </div>
+
+        <div class="question-stage">
+          <article class="question-card group-question-card" id="group-question-card">
+            <div class="card-topline">
+              <span class="question-category" id="group-question-category">情感关系</span>
+              <span class="question-level">多人夜谈</span>
+            </div>
+            <div class="quote-mark" aria-hidden="true">“</div>
+            <p class="question-text" id="group-question-text">你觉得一段关系里，最珍贵但也最容易被忽略的是什么？</p>
+            <div class="card-heart" aria-hidden="true">
+              <span></span><i>✦</i><span></span>
+            </div>
+          </article>
+
+          <div class="group-turn-tools">
+            <p class="answer-prompt">先听完，再回应。也可以邀请在场的其他人一起回答。</p>
+            <button id="change-group-player" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7h8m0 0-2.5-2.5M16 7l-2.5 2.5M16 17H8m0 0 2.5-2.5M8 17l2.5 2.5" /></svg>
+              换个人回答
+            </button>
+          </div>
+        </div>
+
+        <div class="game-actions">
+          <button class="secondary-button" id="skip-group-question" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h11a5 5 0 0 1 0 10H9m3-3-3 3 3 3M20 4v4" /></svg>
+            换一个问题
+          </button>
+          <button class="primary-button" id="complete-group-answer" type="button">
+            <span>聊完了，下一位</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
+          </button>
+        </div>
+
+        <button class="end-game-link" id="end-group-early" type="button">今晚先聊到这里</button>
+      </section>
+
+      <section class="screen" id="group-result-screen" aria-labelledby="group-result-title">
+        <div class="result-orbit group-result-orbit" aria-hidden="true">
+          <span class="orbit-one"></span>
+          <span class="orbit-two"></span>
+          <i>✦</i>
+        </div>
+        <p class="eyebrow">STORIES SHARED TONIGHT</p>
+        <h2 id="group-result-title">谢谢每一个认真回答的人。</h2>
+        <p class="result-copy">
+          今晚，你们分享了 <strong id="group-answered-count">15</strong> 个故事与想法。<br />
+          愿离开这张桌子时，大家比来时更了解彼此。
+        </p>
+
+        <div class="group-result-players glass-card" id="group-result-players"></div>
+
+        <div class="result-actions">
+          <button class="primary-button" id="continue-group-game" type="button">
+            <span>再聊几题</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" /></svg>
+          </button>
+          <button class="secondary-button" type="button" data-go-scene>回到场景选择</button>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="custom-dialog">
+      <form method="dialog" class="dialog-card">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">JUST FOR YOU TWO</p>
+            <h2>专属问题</h2>
+          </div>
+          <button class="icon-button close-dialog" value="cancel" aria-label="关闭">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+
+        <label class="custom-input">
+          <span>写一个你一直想问的问题</span>
+          <textarea id="custom-question-input" maxlength="100" rows="3" placeholder="比如：你最希望我们一起完成的一件事是什么？"></textarea>
+          <small><span id="custom-character-count">0</span>/100</small>
+        </label>
+        <button class="primary-button" id="add-custom-question" type="button">加入今晚的题库</button>
+        <p class="form-message" id="custom-form-message" role="status"></p>
+
+        <div class="custom-list-wrap">
+          <div class="custom-list-heading">
+            <strong>已添加</strong>
+            <span id="custom-list-count">0 个问题</span>
+          </div>
+          <ul id="custom-question-list" class="custom-list"></ul>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="info-dialog">
+      <form method="dialog" class="dialog-card info-card">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">BEFORE YOU START</p>
+            <h2>温柔地玩</h2>
+          </div>
+          <button class="icon-button close-dialog" value="cancel" aria-label="关闭">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg>
+          </button>
+        </div>
+        <ol class="rules-list">
+          <li><span>01</span><p><strong>只说愿意说的</strong>任何问题都可以跳过，不追问理由。</p></li>
+          <li><span>02</span><p><strong>先听完，再回应</strong>不打断、不评判，也不拿答案翻旧账。</p></li>
+          <li><span>03</span><p><strong>答案留在今晚</strong>未经同意，不录音、不转述给别人。</p></li>
+        </ol>
+        <button class="primary-button" value="close">我们约定好了</button>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

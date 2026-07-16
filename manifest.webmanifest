@@ -1,0 +1,26 @@
+{
+  "name": "心里有你 · 真心话夜谈",
+  "short_name": "心里有你",
+  "description": "适合情侣与多人夜谈的温柔真心话游戏。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#100d0f",
+  "theme_color": "#191417",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
