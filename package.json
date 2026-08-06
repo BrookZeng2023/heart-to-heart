@@ -1,0 +1,56 @@
+{
+  "name": "heart-to-heart",
+  "version": "1.2.1",
+  "private": true,
+  "description": "心里有你：适合情侣与多人夜谈的离线真心话应用。",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "web:build": "node scripts/build-web.mjs",
+    "web:serve": "npx serve . -l 4173",
+    "desktop:dev": "npm run web:build && electron .",
+    "mac:icon": "zsh scripts/create-mac-icon.zsh",
+    "native:icons": "zsh scripts/generate-native-icons.zsh",
+    "desktop:dist": "npm run web:build && npm run mac:icon && electron-builder --mac --arm64",
+    "android:sync": "npm run web:build && cap sync android && npm run native:icons",
+    "android:open": "npm run android:sync && cap open android",
+    "android:build": "npm run android:sync && node scripts/build-android.mjs",
+    "ios:sync": "npm run web:build && cap sync ios && npm run native:icons",
+    "ios:open": "npm run ios:sync && cap open ios",
+    "ios:build": "npm run ios:sync && xcodebuild -workspace ios/App/App.xcworkspace -scheme App -configuration Debug -sdk iphonesimulator build",
+    "check": "node --check app.js && node --check electron/main.cjs && node --check scripts/build-web.mjs"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/core": "^7.4.3",
+    "@capacitor/ios": "^7.4.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^7.4.3",
+    "electron": "^43.1.1",
+    "electron-builder": "^26.0.12",
+    "serve": "^14.2.4",
+    "typescript": "^5.8.3"
+  },
+  "build": {
+    "appId": "com.brook.hearttoheart",
+    "productName": "心里有你",
+    "asar": true,
+    "mac": {
+      "category": "public.app-category.entertainment",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "extraResources": [
+      {
+        "from": "web",
+        "to": "web"
+      }
+    ]
+  }
+}

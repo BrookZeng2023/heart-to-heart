@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">心里有你</string>
+    <string name="title_activity_main">心里有你</string>
+    <string name="package_name">com.brook.hearttoheart</string>
+    <string name="custom_url_scheme">com.brook.hearttoheart</string>
+</resources>

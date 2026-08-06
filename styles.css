@@ -92,10 +92,21 @@ textarea:focus-visible {
 
 .app-shell {
   width: min(100%, 1160px);
+  height: 100svh;
+  max-height: 100svh;
   min-height: 100vh;
   min-height: 100svh;
   margin: 0 auto;
   padding: 0 clamp(1.2rem, 5vw, 4.5rem);
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.app-shell::-webkit-scrollbar {
+  display: none;
 }
 
 .topbar {
@@ -660,7 +671,7 @@ h1 em {
 
 .mode-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr));
   gap: 0.8rem;
 }
 
@@ -707,6 +718,16 @@ h1 em {
 
 .mode-card.selected::after {
   opacity: 0.16;
+}
+
+.adult-mode {
+  border-color: rgba(214, 183, 132, 0.3);
+  background: linear-gradient(150deg, rgba(125, 59, 80, 0.24), rgba(255, 255, 255, 0.025));
+}
+
+.adult-mode .mode-icon,
+.adult-mode i {
+  color: var(--gold);
 }
 
 .mode-number {
@@ -1026,6 +1047,17 @@ input[type="range"]::-webkit-slider-thumb {
 
 .topic-chip.selected i {
   color: var(--gold);
+}
+
+.adult-topic {
+  border-color: rgba(214, 183, 132, 0.32);
+}
+
+.adult-content-note {
+  margin: 0.8rem 0 0;
+  color: var(--faint);
+  font-size: 0.67rem;
+  line-height: 1.65;
 }
 
 .group-rounds {
@@ -1817,6 +1849,24 @@ dialog::backdrop {
 
   .dialog-card {
     padding: 1.3rem;
+  }
+
+  #setup-screen,
+  #group-setup-screen {
+    padding-bottom: 6rem;
+  }
+
+  #setup-screen .setup-start,
+  #group-setup-screen .setup-start {
+    position: fixed;
+    z-index: 5;
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: 1rem;
+    width: auto;
+    max-width: none;
+    margin: 0;
+    box-shadow: 0 14px 34px rgba(10, 5, 8, 0.46);
   }
 }
 
