@@ -1,6 +1,6 @@
 # Project Handoff
 
-Updated: 2026-09-12 22:40 Europe/London
+Updated: 2026-09-12 22:47 Europe/London
 Project: heart-to-heart
 Task: Maintain the cross-platform app, refresh built-in question banks, and distribute native builds.
 
@@ -44,8 +44,13 @@ refresh its built-in question banks and distribute verified native builds.
   the Games / Trivia / Casual categories, the Build 2 association, and a 16+
   age rating (17+ on operating systems earlier than version 26).
 - `PRIVACY.md` documents the app's no-data-collection behavior. App Store
-  Connect has the matching privacy-policy URL and a saved `Data Not Collected`
-  response, but the privacy response still requires the final Publish confirmation.
+  Connect has the matching privacy-policy URL, and the `Data Not Collected`
+  response was published successfully.
+- App Store pricing is free (`$0.00`) and availability is configured for all
+  175 countries or regions on app release.
+- App Review contact information was supplied, version 1.2.1 (Build 2) was
+  submitted successfully, and the live App Store Connect status is
+  `Waiting for Review`. Automatic release after approval is selected.
 - The iOS icon generator now renders an opaque full-bleed App Store icon;
   `sips` reports 1024x1024 and `hasAlpha: no`.
 
@@ -57,11 +62,8 @@ refresh its built-in question banks and distribute verified native builds.
 - A developer-team invitation for the tester account was still shown as
   `Resend Invitation`. Developer-team membership is not required for external
   TestFlight testing.
-- The App Store version page still showed `Prepare for Submission`; do not
-  confuse that state with TestFlight external review.
-- Version 1.2.1 is prepared but cannot be added for review until the privacy
-  response is published and App Review contact first name, last name, email,
-  and phone number are supplied.
+- App Store version 1.2.1 is now `Waiting for Review`; Apple states review can
+  take up to 48 hours and will send an email when it is complete.
 - Android state: `android/app/build/outputs/apk/debug/app-debug.apk` exists
   (4.1 MB, SHA-256 `4a84f06c4dcdfb60b4b2b1f01fe67674ad2bb0ba0231c86dfaef8335c5b6269b`)
   and reports package `com.brook.hearttoheart`, versionCode 5, versionName 1.2.1.
@@ -70,14 +72,11 @@ refresh its built-in question banks and distribute verified native builds.
 
 ## Next actions
 
-1. Publish the saved App Privacy `Data Not Collected` response after explicit
-   confirmation.
-2. Add the App Review contact name, email, and phone number, then save.
-3. Add version 1.2.1 for review and complete the final review submission after
-   explicit confirmation.
-4. For future uploads, increment the build number and repeat the icon alpha,
+1. Monitor App Store Connect and email for the review result; respond to any
+   reviewer questions or rejection notes before uploading another build.
+2. For future uploads, increment the build number and repeat the icon alpha,
    Bundle ID, signing, and upload checks.
-5. For a distributable Android release, configure a release signing key and run
+3. For a distributable Android release, configure a release signing key and run
    a release build; the current APK uses Android's debug signing configuration.
 
 ## Validation to repeat
