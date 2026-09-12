@@ -25,7 +25,16 @@ done
 
 ios_target="$root/ios/App/App/Assets.xcassets/AppIcon.appiconset/AppIcon-512@2x.png"
 if [[ -d "${ios_target:h}" ]]; then
-  sips -s format png -z 1024 1024 "$source_icon" --out "$ios_target" >/dev/null
+  ios_icon_tmp="$(mktemp -d)"
+  trap 'rm -rf "$ios_icon_tmp"' EXIT
+  # App Store icons must be opaque and must not contain pre-rounded transparent
+  # corners. Keep the shared artwork rounded elsewhere, but render the iOS
+  # source with a full-bleed background before converting it to PNG.
+  sed 's/<rect width="512" height="512" rx="124"/<rect width="512" height="512"/' \
+    "$source_icon" > "$ios_icon_tmp/AppIcon.svg"
+  sips -s format jpeg -z 1024 1024 "$ios_icon_tmp/AppIcon.svg" \
+    --out "$ios_icon_tmp/AppIcon.jpg" >/dev/null
+  sips -s format png "$ios_icon_tmp/AppIcon.jpg" --out "$ios_target" >/dev/null
 fi
 
 echo "Updated native launcher icons from icon.svg."

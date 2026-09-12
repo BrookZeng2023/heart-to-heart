@@ -85,3 +85,5 @@ npm run ios:build        # 编译 iPhone Simulator Debug 版本
 ## 隐私
 
 应用没有账号、服务器、统计代码或网络接口。玩家名字、自定义题目与设置只保存在当前浏览器的本地存储中。
+
+完整隐私政策见 [`PRIVACY.md`](PRIVACY.md)。

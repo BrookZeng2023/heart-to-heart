@@ -1,6 +1,6 @@
 # Project Handoff
 
-Updated: 2026-07-19 00:38 Asia/Shanghai
+Updated: 2026-09-12 22:40 Europe/London
 Project: heart-to-heart
 Task: Maintain the cross-platform app, refresh built-in question banks, and distribute native builds.
 
@@ -36,6 +36,18 @@ refresh its built-in question banks and distribute verified native builds.
 - A signed Apple Silicon macOS DMG for version 1.2.1 was built successfully.
   `hdiutil verify`, `codesign --verify --deep --strict`, and bundled-cache
   checks passed.
+- iOS version 1.2.1 (Build 2) was archived, signed with Apple Distribution,
+  uploaded to App Store Connect, and marked `Ready to Submit` after export
+  compliance was completed.
+- App Store metadata for version 1.2.1 now includes three 6.5-inch iPhone
+  screenshots, one 13-inch iPad screenshot, description, keywords, support URL,
+  the Games / Trivia / Casual categories, the Build 2 association, and a 16+
+  age rating (17+ on operating systems earlier than version 26).
+- `PRIVACY.md` documents the app's no-data-collection behavior. App Store
+  Connect has the matching privacy-policy URL and a saved `Data Not Collected`
+  response, but the privacy response still requires the final Publish confirmation.
+- The iOS icon generator now renders an opaque full-bleed App Store icon;
+  `sips` reports 1024x1024 and `hasAlpha: no`.
 
 ## Current state and blockers
 
@@ -47,6 +59,9 @@ refresh its built-in question banks and distribute verified native builds.
   TestFlight testing.
 - The App Store version page still showed `Prepare for Submission`; do not
   confuse that state with TestFlight external review.
+- Version 1.2.1 is prepared but cannot be added for review until the privacy
+  response is published and App Review contact first name, last name, email,
+  and phone number are supplied.
 - Android state: `android/app/build/outputs/apk/debug/app-debug.apk` exists
   (4.1 MB, SHA-256 `4a84f06c4dcdfb60b4b2b1f01fe67674ad2bb0ba0231c86dfaef8335c5b6269b`)
   and reports package `com.brook.hearttoheart`, versionCode 5, versionName 1.2.1.
@@ -55,11 +70,11 @@ refresh its built-in question banks and distribute verified native builds.
 
 ## Next actions
 
-1. Open the TestFlight iOS Builds page and verify Build 1's live status.
-2. If the build is available for external testing, verify the tester has a
-   build assigned and that the invitation status is no longer `No Builds Available`.
-3. If team access is genuinely needed, resend the pending developer invitation
-   only after confirming the recipient uses the same Apple Account email.
+1. Publish the saved App Privacy `Data Not Collected` response after explicit
+   confirmation.
+2. Add the App Review contact name, email, and phone number, then save.
+3. Add version 1.2.1 for review and complete the final review submission after
+   explicit confirmation.
 4. For future uploads, increment the build number and repeat the icon alpha,
    Bundle ID, signing, and upload checks.
 5. For a distributable Android release, configure a release signing key and run
